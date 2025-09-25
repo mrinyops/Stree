@@ -1,5 +1,17 @@
 import { create } from 'zustand';
 
+// Small helper to generate selector hooks
+const createSelectors = <S extends object>(store: any) => {
+  const use = {} as {
+    [K in keyof S]: () => S[K];
+  };
+  for (const k of Object.keys(store.getState())) {
+    // @ts-ignore
+    use[k] = () => store((s: S) => s[k]);
+  }
+  return { ...store, use };
+};
+
 type Status = 'idle' | 'signedIn' | 'signedOut';
 
 interface AuthState {
@@ -10,6 +22,7 @@ interface AuthState {
   restoreSession: () => void;
 }
 
+// Base Zustand store
 export const useAuthStore = create<AuthState>((set) => ({
   status: 'idle', // ✅ start in idle so splash shows first
   user: null,
@@ -34,3 +47,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     }, 500); // small delay so splash is visible
   },
 }));
+
+// ✅ Selector API wrapper
+export const useAuth = createSelectors(useAuthStore);
