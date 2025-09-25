@@ -4,7 +4,7 @@ Mobile App </h1>
 
 > This Project is based on [Obytes starter](https://starter.obytes.com)
 
-## Requirements
+## Requirementsss
 
 - [React Native dev environment ](https://reactnative.dev/docs/environment-setup)
 - [Node.js LTS release](https://nodejs.org/en/)
@@ -47,5 +47,5 @@ pnpm android
 - [Forms](https://starter.obytes.com/ui-and-theme/Forms)
 - [Data fetching](https://starter.obytes.com/guides/data-fetching)
 - [Contribute to starter](https://starter.obytes.com/how-to-contribute/)
-"# Stree" 
-"# Stree" 
+  "# Stree"
+  "# Stree"
