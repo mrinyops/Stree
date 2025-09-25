@@ -9,12 +9,18 @@
     },
     "esModuleInterop": true,
     "checkJs": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
+    // ✅ add global types for jest + jest-native matchers
+    "types": ["jest", "@testing-library/jest-native"]
   },
   "exclude": ["node_modules", "android", "ios", "dist", "build"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
+    "jest-setup.ts", // ✅ make sure setup file is included
+    "src/global.d.ts",
+    "src/jest.d.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
