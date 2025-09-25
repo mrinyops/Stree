@@ -1,32 +1,38 @@
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, TextInput } from 'react-native';
 
-import { useAuth } from '@/lib/auth/store'; // ✅ selector API
+import { Text, View } from '@/components/ui';
+import { useAuth } from '@/lib/store'; // ✅ fixed import
 
 export default function LoginScreen() {
   const signIn = useAuth.use.signIn();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
-    <View className="flex-1 items-center justify-center bg-white px-6 dark:bg-black">
-      <Text className="mb-6 text-2xl font-bold text-streeBlue">Stree</Text>
+    <View className="flex-1 items-center justify-center bg-white p-6">
+      <Text className="mb-6 text-2xl font-bold">Login</Text>
 
       <TextInput
         placeholder="Email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        className="mb-4 w-full rounded-2xl border border-gray-300 px-4 py-3 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
+        value={email}
+        onChangeText={setEmail}
+        className="mb-4 w-full rounded-lg border px-4 py-3"
       />
 
       <TextInput
         placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
         secureTextEntry
-        className="mb-6 w-full rounded-2xl border border-gray-300 px-4 py-3 text-base text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
+        className="mb-6 w-full rounded-lg border px-4 py-3"
       />
 
       <Pressable
-        onPress={signIn}
-        className="w-full rounded-2xl bg-streeBlue px-6 py-3"
+        onPress={() => signIn(email, password)}
+        className="rounded-2xl bg-streeBlue px-6 py-3 shadow-sm active:opacity-80"
       >
-        <Text className="text-center font-semibold text-white">Sign In</Text>
+        <Text className="text-base font-medium text-white">Sign In</Text>
       </Pressable>
     </View>
   );
